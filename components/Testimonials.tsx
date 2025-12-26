@@ -23,30 +23,40 @@ const Testimonials: React.FC = () => {
   ];
 
   return (
-    <div className="py-16 bg-white border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-           <h2 className="text-3xl font-black text-bisa-navy font-display uppercase">Parents Love BISA</h2>
-           <p className="text-gray-500 mt-2">Rated 5 Stars by local families</p>
+    // Changed to Dark Navy background for maximum contrast with the previous light section
+    <div className="py-20 bg-bisa-navy relative overflow-hidden">
+      
+      {/* Background Decorative Elements */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+          <div className="absolute top-10 left-10 w-64 h-64 bg-bisa-gold rounded-full mix-blend-overlay filter blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-400 rounded-full mix-blend-overlay filter blur-3xl"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-14">
+           <div className="inline-flex items-center justify-center space-x-2 bg-white/10 rounded-full px-4 py-1.5 mb-4 backdrop-blur-sm border border-white/10">
+              <span className="text-bisa-gold">★★★★★</span>
+              <span className="text-white text-xs font-bold uppercase tracking-widest">Rated 5 Stars</span>
+           </div>
+           <h2 className="text-3xl md:text-4xl font-black text-white font-display uppercase tracking-tight">Parents Love BISA</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {reviews.map((review, idx) => (
-            <div key={idx} className="bg-gray-50 p-6 rounded-2xl relative border border-gray-100 hover:shadow-lg transition-all duration-300">
-              <div className="absolute -top-4 left-6 bg-bisa-gold text-bisa-navy p-2 rounded-lg shadow-sm">
-                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.01691 21L5.01691 18C5.01691 16.8954 5.91234 16 7.01691 16H10.0169C10.5692 16 11.0169 15.5523 11.0169 15V9C11.0169 8.44772 10.5692 8 10.0169 8H6.01691C5.46462 8 5.01691 8.44772 5.01691 9V11C5.01691 11.5523 4.56919 12 4.01691 12H3.01691V5H13.0169V15C13.0169 18.3137 10.3306 21 7.01691 21H5.01691Z" /></svg>
+            <div key={idx} className="bg-white/5 backdrop-blur-md p-8 rounded-2xl relative border border-white/10 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:border-bisa-gold/50 group">
+              <div className="absolute -top-5 left-8 bg-gradient-to-br from-bisa-gold to-yellow-600 text-bisa-navy p-3 rounded-xl shadow-lg transform rotate-3 group-hover:rotate-6 transition-transform">
+                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.01691 21L5.01691 18C5.01691 16.8954 5.91234 16 7.01691 16H10.0169C10.5692 16 11.0169 15.5523 11.0169 15V9C11.0169 8.44772 10.5692 8 10.0169 8H6.01691C5.46462 8 5.01691 8.44772 5.01691 9V11C5.01691 11.5523 4.56919 12 4.01691 12H3.01691V5H13.0169V15C13.0169 18.3137 10.3306 21 7.01691 21H5.01691Z" /></svg>
               </div>
-              <p className="mt-4 text-gray-600 italic mb-6 text-sm leading-relaxed">"{review.text}"</p>
-              <div className="flex items-center mt-auto">
-                <img className="w-10 h-10 rounded-full mr-3" src={review.image} alt={review.name} />
+              
+              <p className="mt-6 text-gray-200 italic mb-8 text-sm leading-relaxed font-light tracking-wide opacity-90">
+                "{review.text}"
+              </p>
+              
+              <div className="flex items-center mt-auto border-t border-white/10 pt-4">
+                <img className="w-10 h-10 rounded-full mr-3 ring-2 ring-bisa-gold/50" src={review.image} alt={review.name} />
                 <div>
-                  <h4 className="font-bold text-gray-900 text-sm">{review.name}</h4>
-                  <p className="text-gray-500 text-xs">{review.role}</p>
-                </div>
-                <div className="ml-auto flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                  ))}
+                  <h4 className="font-bold text-white text-sm">{review.name}</h4>
+                  <p className="text-gray-400 text-xs uppercase tracking-wide">{review.role}</p>
                 </div>
               </div>
             </div>

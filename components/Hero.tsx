@@ -2,7 +2,8 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <div className="relative overflow-hidden h-[380px] md:h-[480px] flex items-start pt-24 md:pt-32 justify-center bg-bisa-navy">
+    // Changed h-[380px] to min-h-[460px] to ensure text fits on mobile before the form overlaps
+    <div className="relative overflow-hidden min-h-[460px] md:h-[520px] flex items-start pt-28 md:pt-36 justify-center bg-bisa-navy">
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full z-0 animate-fade-in">
         {/* Solid dark overlay for better text contrast */}
@@ -19,7 +20,7 @@ const Hero: React.FC = () => {
         />
       </div>
 
-      <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-10 md:pb-0">
         
         <div className="inline-flex items-center justify-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-5 backdrop-blur-md shadow-sm animate-pop-in" style={{ animationDelay: '0.1s' }}>
           <span className="flex h-2 w-2 relative">

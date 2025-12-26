@@ -43,7 +43,8 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ onVoucherFound }) => {
   const labelClass = "block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1";
 
   return (
-    <div className="w-full max-w-3xl mx-auto -mt-20 md:-mt-28 relative z-30 px-4 mb-16 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+    // Adjusted negative margin top for mobile (-mt-12) to work better with the taller Hero
+    <div className="w-full max-w-3xl mx-auto -mt-12 md:-mt-28 relative z-30 px-4 mb-16 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
       <div className="bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,39,109,0.15)] overflow-hidden border border-gray-100 transform transition-all hover:shadow-[0_25px_60px_rgba(0,39,109,0.2)] duration-500">
         
         {/* Professional Header */}
@@ -74,6 +75,7 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ onVoucherFound }) => {
                  onChange={handleChange}
                  className={inputClass}
                  placeholder="Enter full name"
+                 autoComplete="off"
                />
             </div>
 
@@ -89,6 +91,7 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ onVoucherFound }) => {
                  onChange={handleChange}
                  className={inputClass}
                  placeholder="e.g. 8"
+                 autoComplete="off"
                />
             </div>
 
@@ -103,6 +106,7 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ onVoucherFound }) => {
                  onChange={handleChange}
                  className={inputClass}
                  placeholder="First & Last Name"
+                 autoComplete="name"
                />
             </div>
 
@@ -116,6 +120,7 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ onVoucherFound }) => {
                  onChange={handleChange}
                  className={inputClass}
                  placeholder="(843) 000-0000"
+                 autoComplete="tel"
                />
             </div>
 
@@ -130,6 +135,7 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ onVoucherFound }) => {
                  onChange={handleChange}
                  className={inputClass}
                  placeholder="For scheduling confirmation"
+                 autoComplete="email"
                />
             </div>
 
@@ -137,16 +143,17 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ onVoucherFound }) => {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full py-4 rounded-xl font-bold text-lg tracking-wide uppercase transition-all duration-200 transform shadow-lg overflow-hidden relative group
+                className={`w-full py-4 rounded-xl font-bold text-lg tracking-wide uppercase transition-all duration-300 transform shadow-lg overflow-hidden relative group
                   ${loading 
                     ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
-                    : 'bg-bisa-navy text-white hover:bg-[#00338D] hover:shadow-xl hover:-translate-y-1 active:translate-y-0.5 active:shadow-md'
+                    : 'bg-gradient-to-r from-bisa-navy via-[#00338D] to-bisa-navy bg-[length:200%_auto] hover:bg-right animate-gradient-x text-white hover:shadow-xl hover:-translate-y-1 active:scale-[0.98]'
                   }`}
               >
-                {/* Shimmer effect on hover */}
+                {/* Decorative sheen/shine effect */}
                 {!loading && (
-                   <div className="absolute top-0 -left-full w-1/2 h-full skew-x-12 bg-white/20 group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                 )}
+                
                 {loading ? (
                   <span className="flex items-center justify-center space-x-2">
                     <svg className="animate-spin h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -155,14 +162,16 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ onVoucherFound }) => {
                     </svg>
                     <span>Finding Class...</span>
                   </span>
-                ) : 'Find Next Class'}
+                ) : (
+                  <span className="flex items-center justify-center space-x-2">
+                    <span>Find Next Class</span>
+                    <svg className="w-5 h-5 animate-bounce-slow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </span>
+                )}
               </button>
-              <div className="flex items-center justify-center mt-4 space-x-1.5 opacity-0 animate-fade-in" style={{ animationDelay: '1s' }}>
-                <svg className="w-3 h-3 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>
-                <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">
-                  Next session: This Wednesday
-                </p>
-              </div>
+              {/* Removed "Next session" text as requested */}
             </div>
           </div>
           
