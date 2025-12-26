@@ -1,6 +1,12 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { VoucherDetails } from "../types";
 
+// --------------------------------------------------------------------------
+// CONFIGURAÇÃO DA API KEY
+// Substitua o texto abaixo pela sua chave da API Google Gemini (ex: "AIzaSy...")
+// --------------------------------------------------------------------------
+const API_KEY = "YOUR_API_KEY_HERE";
+
 const SYSTEM_INSTRUCTION = `
 You are the "Class Matcher AI" for BISA Soccer Academy.
 Your goal is to validate if a child is eligible for our Winter Futsal Program based on their age.
@@ -63,7 +69,8 @@ export const findClassMatch = async (age: string): Promise<VoucherDetails> => {
   const nextWednesdayDate = getNextWednesday();
 
   try {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    // Use the constant variable instead of process.env for browser compatibility in this setup
+    const ai = new GoogleGenAI({ apiKey: API_KEY });
     
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
