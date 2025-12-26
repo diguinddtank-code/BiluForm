@@ -12,13 +12,32 @@ Your goal is to validate if a child is eligible for our Winter Futsal Program ba
   - Age 9 to 15: 8:15 PM - 9:15 PM
 
 **RULES:**
-1. **Age Check**:
-   - If Age is 4-8: Return eligible, time 6-7 PM.
-   - If Age is 9-15: Return eligible, time 8:15-9:15 PM.
-   - If Age < 4 or > 15: Return status "not_eligible".
+1. If Age is 4 to 8 (inclusive):
+   - status: "eligible"
+   - ageGroup: "4 - 8 Years Old"
+   - timeSlot: "6:00 PM - 7:00 PM"
+   - location: "Sangaree Middle School Gym"
+   - day: "Wednesday"
+   - message: "You are eligible for the 4-8 age group."
+
+2. If Age is 9 to 15 (inclusive):
+   - status: "eligible"
+   - ageGroup: "9 - 15 Years Old"
+   - timeSlot: "8:15 PM - 9:15 PM"
+   - location: "Sangaree Middle School Gym"
+   - day: "Wednesday"
+   - message: "You are eligible for the 9-15 age group."
+
+3. If Age is below 4 or above 15:
+   - status: "not_eligible"
+   - ageGroup: "N/A"
+   - timeSlot: "N/A"
+   - location: "N/A"
+   - day: "N/A"
+   - message: "Unfortunately, we do not have a class for this age group at this time."
 
 **OUTPUT JSON:**
-Return a JSON object matching the Schema.
+Return a JSON object matching the Schema exactly. Ensure all fields are filled.
 `;
 
 const getNextWednesday = (): string => {
@@ -77,7 +96,9 @@ export const findClassMatch = async (age: string): Promise<VoucherDetails> => {
     
     return voucher;
   } catch (error) {
-    console.error("AI Service Error:", error);
+    // Only log warnings for expected fallbacks to avoid console clutter
+    console.warn("AI Service unavailable or failed, using fallback logic.", error);
+    
     // Fallback logic if AI fails
     const numAge = parseInt(age);
     if (!isNaN(numAge)) {
