@@ -5,7 +5,7 @@ import { VoucherDetails } from "../types";
 // CONFIGURAÇÃO DA API KEY
 // Substitua o texto abaixo pela sua chave da API Google Gemini (ex: "AIzaSy...")
 // --------------------------------------------------------------------------
-const API_KEY = "YOUR_API_KEY_HERE";
+const API_KEY = "AIzaSyArrRftYNITbDwRSs6HEzTVrnbepXlaw2Q";
 
 const SYSTEM_INSTRUCTION = `
 You are the "Class Matcher AI" for BISA Soccer Academy.
