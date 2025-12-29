@@ -13,6 +13,7 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ onVoucherFound }) => {
     parentName: '',
     parentPhone: '',
     email: '',
+    selectedDate: '',
   });
 
   const [loading, setLoading] = useState(false);
@@ -171,7 +172,6 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ onVoucherFound }) => {
                   </span>
                 )}
               </button>
-              {/* Removed "Next session" text as requested */}
             </div>
           </div>
           

@@ -4,6 +4,7 @@ export interface BookingFormData {
   parentName: string;
   parentPhone: string;
   email: string;
+  selectedDate: string;
 }
 
 export interface VoucherDetails {

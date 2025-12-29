@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BookingFormData, VoucherDetails } from '../types';
-import { submitBookingToWebhook } from '../services/bookingService';
+import { submitBookingToWebhook, getUpcomingWednesdays } from '../services/bookingService';
 
 interface ResultsModalProps {
   voucher: VoucherDetails | null;
@@ -9,15 +9,37 @@ interface ResultsModalProps {
 }
 
 const ResultsModal: React.FC<ResultsModalProps> = ({ voucher, formData, onClose }) => {
-  const [step, setStep] = useState<'voucher' | 'loading' | 'success'>('voucher');
+  // Steps: 'date-selection' -> 'voucher' -> 'loading' -> 'success'
+  // If not eligible, goes straight to error view (handled in render)
+  const [step, setStep] = useState<'date-selection' | 'voucher' | 'loading' | 'success'>('date-selection');
+  const [selectedDate, setSelectedDate] = useState<string>('');
+  const [dates, setDates] = useState<string[]>([]);
+
+  useEffect(() => {
+    setDates(getUpcomingWednesdays(4));
+    // If voucher indicates ineligibility, step doesn't matter as much, 
+    // but logic below handles the "Not Eligible" view regardless of step.
+  }, []);
 
   if (!voucher || !formData) return null;
 
   const isEligible = voucher.status === 'eligible';
 
+  const handleDateSelect = (date: string) => {
+    setSelectedDate(date);
+    // Add a small delay for better UX before switching views
+    setTimeout(() => {
+        setStep('voucher');
+    }, 300);
+  };
+
   const handleConfirm = async () => {
     setStep('loading');
-    await submitBookingToWebhook(formData, voucher);
+    
+    // Create a new voucher object with the selected date
+    const finalVoucher = { ...voucher, date: selectedDate };
+    
+    await submitBookingToWebhook(formData, finalVoucher);
     setStep('success');
   };
 
@@ -56,9 +78,95 @@ const ResultsModal: React.FC<ResultsModalProps> = ({ voucher, formData, onClose 
                   Close
                 </button>
              </div>
+          ) : step === 'date-selection' ? (
+              <div className="bg-white rounded-2xl overflow-hidden shadow-2xl">
+                  {/* Step 1 Header */}
+                  <div className="bg-gradient-to-r from-bisa-navy to-[#00338D] p-6 text-center text-white relative overflow-hidden">
+                      {/* Decorative background element */}
+                      <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-8 -mt-8"></div>
+                      
+                      <div className="flex justify-center mb-2 relative z-10">
+                          <div className="bg-white/20 p-2 rounded-full ring-1 ring-white/30">
+                              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                          </div>
+                      </div>
+                      <h2 className="text-xl font-bold font-display uppercase tracking-wider relative z-10">You Qualified!</h2>
+                      <p className="text-white/80 text-xs mt-1 relative z-10">Based on age, {formData.childName} matches our:</p>
+                      <div className="mt-3 bg-white/10 rounded-lg py-2 px-4 inline-block border border-white/20 relative z-10 backdrop-blur-sm">
+                          <span className="font-bold text-bisa-gold text-sm block">{voucher.ageGroup} Class</span>
+                          <span className="text-white/90 text-xs">{voucher.timeSlot}</span>
+                      </div>
+                  </div>
+
+                  {/* Date Selector Body */}
+                  <div className="p-6 md:p-8">
+                      <h3 className="text-gray-900 font-bold text-center mb-6 text-lg md:text-xl font-display tracking-tight">
+                        Select the best day for you
+                      </h3>
+                      
+                      <div className="grid grid-cols-2 gap-3 mb-8">
+                          {dates.map((date) => (
+                              <button
+                                  key={date}
+                                  onClick={() => handleDateSelect(date)}
+                                  className="group relative flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 hover:border-bisa-navy hover:bg-blue-50/30 transition-all duration-200 hover:shadow-md"
+                              >
+                                  <span className="text-[10px] font-bold text-gray-400 uppercase mb-1 tracking-widest">{date.split(',')[0]}</span>
+                                  <span className="text-sm font-bold text-bisa-navy group-hover:scale-105 transition-transform">{date.split(',')[1]}</span>
+                                  
+                                  {/* Hover Arrow */}
+                                  <div className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:-translate-x-1">
+                                      <svg className="w-4 h-4 text-bisa-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                      </svg>
+                                  </div>
+                              </button>
+                          ))}
+                      </div>
+
+                      {/* Professional Location Card */}
+                      <div className="border-t border-gray-100 pt-6">
+                        <div className="flex items-start space-x-4 bg-gray-50 p-4 rounded-xl border border-gray-200/60 hover:border-bisa-navy/30 transition-colors group">
+                           <div className="bg-white p-2.5 rounded-full shadow-sm text-bisa-navy border border-gray-100 shrink-0 group-hover:text-white group-hover:bg-bisa-navy transition-colors">
+                              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                           </div>
+                           <div className="flex-1 min-w-0">
+                              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Training Location</p>
+                              <h4 className="font-bold text-gray-900 text-sm leading-tight mb-1 truncate">Sangaree Middle School Gym</h4>
+                              <p className="text-gray-500 text-xs leading-snug">1050 Discovery Dr, Ladson, SC 29456</p>
+                              
+                              <a 
+                                href="https://www.google.com/maps/search/?api=1&query=Sangaree+Middle+School+Gym+1050+Discovery+Dr+Ladson+SC" 
+                                target="_blank" 
+                                rel="noreferrer"
+                                className="inline-flex items-center mt-2 text-[10px] font-bold text-bisa-navy hover:text-bisa-gold transition-colors"
+                              >
+                                <span>Get Directions</span>
+                                <svg className="w-3 h-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                              </a>
+                           </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
           ) : step === 'voucher' ? (
-            <div className="relative">
+            <div className="relative animate-fade-in">
               {/* Clean Official Pass Design */}
+              <button 
+                onClick={() => setStep('date-selection')}
+                className="absolute top-4 left-4 z-20 text-gray-400 hover:text-bisa-navy text-xs font-bold flex items-center transition-colors"
+              >
+                <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                Back
+              </button>
+
               <div className="bg-white rounded-xl overflow-hidden shadow-2xl">
                  
                  {/* Header */}
@@ -84,7 +192,7 @@ const ResultsModal: React.FC<ResultsModalProps> = ({ voucher, formData, onClose 
                       <div className="flex justify-between items-end border-b border-gray-200 pb-2 hover:bg-white transition-colors px-2 rounded">
                         <span className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Date</span>
                         <div className="text-right">
-                            <span className="block text-sm font-bold text-bisa-navy">{voucher.date}</span>
+                            <span className="block text-sm font-bold text-bisa-navy">{selectedDate}</span>
                         </div>
                       </div>
 
@@ -136,7 +244,7 @@ const ResultsModal: React.FC<ResultsModalProps> = ({ voucher, formData, onClose 
                   <div className="bg-gray-50 rounded-lg p-4 mb-6 border border-gray-100 text-left transform transition-all hover:scale-[1.02] hover:shadow-md">
                     <p className="text-xs text-gray-500 font-bold uppercase mb-1">Your Session:</p>
                      <div className="mb-2 border-b border-gray-200 pb-2">
-                       <p className="text-bisa-navy font-black text-base">{voucher.date}</p>
+                       <p className="text-bisa-navy font-black text-base">{selectedDate}</p>
                        <p className="text-bisa-navy/80 font-bold text-sm">{voucher.timeSlot}</p>
                      </div>
                     <ul className="text-sm text-gray-700 list-disc list-inside space-y-1">

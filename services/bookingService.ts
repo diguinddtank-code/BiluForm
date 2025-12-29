@@ -2,17 +2,34 @@ import { BookingFormData, VoucherDetails } from "../types";
 
 const WEBHOOK_URL = "https://webhook.infra-remakingautomacoes.cloud/webhook/formulario";
 
-const getNextWednesday = (): string => {
+// Helper to generate the next 'count' Wednesdays
+export const getUpcomingWednesdays = (count: number = 4): string[] => {
+  const dates: string[] = [];
   const date = new Date();
-  const day = date.getDay();
-  let daysUntil = (3 - day + 7) % 7;
-  date.setDate(date.getDate() + daysUntil);
-  return date.toLocaleDateString('en-US', { 
-    weekday: 'long', 
-    month: 'long', 
-    day: 'numeric',
-    year: 'numeric'
-  });
+  
+  // Find the next Wednesday (if today is Wed, we count it, unless it's late, but let's assume valid for now)
+  // 0 = Sun, 1 = Mon, 2 = Tue, 3 = Wed
+  while (date.getDay() !== 3) {
+    date.setDate(date.getDate() + 1);
+  }
+
+  for (let i = 0; i < count; i++) {
+    dates.push(date.toLocaleDateString('en-US', { 
+      weekday: 'long', 
+      month: 'short', 
+      day: 'numeric'
+    }));
+    // Add 7 days for the next week
+    date.setDate(date.getDate() + 7);
+  }
+  
+  return dates;
+};
+
+// Kept for fallback compatibility, but main logic now comes from UI selection
+const getNextWednesday = (): string => {
+  const dates = getUpcomingWednesdays(1);
+  return dates[0];
 };
 
 export const determineEligibility = (ageStr: string): VoucherDetails => {
@@ -65,7 +82,7 @@ export const submitBookingToWebhook = async (data: BookingFormData, voucher: Vou
       ...data,
       assigned_class: voucher.ageGroup,
       assigned_time: voucher.timeSlot,
-      assigned_date: voucher.date,
+      assigned_date: voucher.date, // Use the date from the voucher (which matches selectedDate)
       submission_date: new Date().toISOString()
     };
 
@@ -80,9 +97,6 @@ export const submitBookingToWebhook = async (data: BookingFormData, voucher: Vou
     return response.ok;
   } catch (error) {
     console.error("Webhook submission error:", error);
-    // In many frontend-only scenarios without a proxy, CORS might fail. 
-    // For this UI demo, we often treat network errors as handled or alert the user.
-    // However, we return false here to let the UI handle it.
     return false;
   }
 };
