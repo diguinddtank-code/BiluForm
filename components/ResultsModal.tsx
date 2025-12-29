@@ -106,21 +106,37 @@ const ResultsModal: React.FC<ResultsModalProps> = ({ voucher, formData, onClose 
                         Select the best day for you
                       </h3>
                       
-                      <div className="grid grid-cols-2 gap-3 mb-8">
+                      <div className="grid grid-cols-1 gap-3 mb-6">
                           {dates.map((date) => (
                               <button
                                   key={date}
                                   onClick={() => handleDateSelect(date)}
-                                  className="group relative flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 hover:border-bisa-navy hover:bg-blue-50/30 transition-all duration-200 hover:shadow-md"
+                                  className="group relative w-full bg-white border border-gray-200 hover:border-bisa-navy/60 p-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-between"
                               >
-                                  <span className="text-[10px] font-bold text-gray-400 uppercase mb-1 tracking-widest">{date.split(',')[0]}</span>
-                                  <span className="text-sm font-bold text-bisa-navy group-hover:scale-105 transition-transform">{date.split(',')[1]}</span>
+                                  {/* Left: Date Info */}
+                                  <div className="flex items-center space-x-4">
+                                      <div className="bg-gray-50 rounded-lg p-2 group-hover:bg-blue-50 transition-colors">
+                                          <svg className="w-5 h-5 text-gray-400 group-hover:text-bisa-navy transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                          </svg>
+                                      </div>
+                                      <div className="text-left">
+                                          <span className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                                              {date.split(',')[0]}
+                                          </span>
+                                          <span className="block text-base font-black text-bisa-navy font-display leading-none">
+                                              {date.split(',')[1]}
+                                          </span>
+                                      </div>
+                                  </div>
                                   
-                                  {/* Hover Arrow */}
-                                  <div className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:-translate-x-1">
-                                      <svg className="w-4 h-4 text-bisa-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                                      </svg>
+                                  {/* Right: Availability Indicator */}
+                                  <div className="flex items-center space-x-1.5 bg-green-50/80 px-2.5 py-1 rounded-full border border-green-100 group-hover:border-green-200 transition-colors">
+                                      <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                      </span>
+                                      <span className="text-[9px] font-bold text-green-700 uppercase tracking-tight">Available</span>
                                   </div>
                               </button>
                           ))}
@@ -135,7 +151,7 @@ const ResultsModal: React.FC<ResultsModalProps> = ({ voucher, formData, onClose 
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                               </svg>
                            </div>
-                           <div className="flex-1 min-w-0">
+                           <div className="flex-1 min-w-0 text-left">
                               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Training Location</p>
                               <h4 className="font-bold text-gray-900 text-sm leading-tight mb-1 truncate">Sangaree Middle School Gym</h4>
                               <p className="text-gray-500 text-xs leading-snug">1050 Discovery Dr, Ladson, SC 29456</p>
