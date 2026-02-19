@@ -31,14 +31,12 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ language }) => {
       step1Desc: "Preencha seus dados para receber o link.",
       step2Title: "Galeria Privada",
       step2Desc: "Você receberá o acesso para ver as fotos.",
-      step3Title: "Liberação",
-      step3Desc: "Pagamento via Zelle para liberar o download.",
       
       valueLabel: "Investimento",
       paymentInst: "Pagamento via Zelle",
       deadline: "Enviar comprovante em 24h",
       doubts: "Dúvidas? Fale conosco.",
-      confirmBtn: "Solicitar Acesso Agora", // Changed CTA
+      confirmBtn: "Solicitar Acesso Agora",
       sending: "Enviando...",
       successTitle: "Pedido Recebido!",
       successMsg: "Recebemos os dados de",
@@ -60,14 +58,12 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ language }) => {
       step1Desc: "Complete sus datos para recibir el enlace.",
       step2Title: "Galería Privada",
       step2Desc: "Recibirá acceso para ver las fotos.",
-      step3Title: "Liberación",
-      step3Desc: "Pago vía Zelle para liberar la descarga.",
 
       valueLabel: "Inversión",
       paymentInst: "Pago vía Zelle",
       deadline: "Enviar comprobante en 24h",
       doubts: "¿Dudas? Contáctenos.",
-      confirmBtn: "Solicitar Acceso Ahora", // Changed CTA
+      confirmBtn: "Solicitar Acceso Ahora",
       sending: "Enviando...",
       successTitle: "¡Pedido Recibido!",
       successMsg: "Recibimos los datos de",
@@ -89,14 +85,12 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ language }) => {
       step1Desc: "Fill in details to receive the link.",
       step2Title: "Private Gallery",
       step2Desc: "You will receive access to view photos.",
-      step3Title: "Release",
-      step3Desc: "Zelle payment to unlock downloads.",
 
       valueLabel: "Investment",
       paymentInst: "Payment via Zelle",
       deadline: "Send proof within 24h",
       doubts: "Questions? Contact us.",
-      confirmBtn: "Request Access Now", // Changed CTA
+      confirmBtn: "Request Access Now",
       sending: "Sending...",
       successTitle: "Order Received!",
       successMsg: "We received data for",
@@ -344,17 +338,6 @@ const MatcherForm: React.FC<MatcherFormProps> = ({ language }) => {
                         <div>
                             <p className="text-bisa-navy font-bold text-xs">{t.step2Title}</p>
                             <p className="text-gray-500 text-[10px] leading-tight mt-0.5">{t.step2Desc}</p>
-                        </div>
-                    </div>
-
-                     {/* Step 3 */}
-                     <div className="flex items-start gap-3">
-                        <div className="bg-blue-50 text-bisa-navy w-8 h-8 rounded-full flex items-center justify-center shrink-0 border border-blue-100">
-                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        </div>
-                        <div>
-                            <p className="text-bisa-navy font-bold text-xs">{t.step3Title}</p>
-                            <p className="text-gray-500 text-[10px] leading-tight mt-0.5">{t.step3Desc}</p>
                         </div>
                     </div>
                 </div>
