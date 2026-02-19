@@ -1,10 +1,19 @@
+export type Language = 'pt' | 'es' | 'en';
+
+export interface PhotoOrderFormData {
+  playerName: string;
+  parentName: string;
+  phone: string;
+  email: string;
+}
+
 export interface BookingFormData {
   childName: string;
-  childAge: string; 
+  childAge: string;
   parentName: string;
-  parentPhone: string;
   email: string;
-  selectedDate: string;
+  phone: string;
+  zipCode?: string;
 }
 
 export interface VoucherDetails {
@@ -13,8 +22,8 @@ export interface VoucherDetails {
   timeSlot: string;
   location: string;
   day: string;
-  date?: string; // Specific date of the class
-  message?: string; // Optional message from AI
+  date?: string; 
+  message?: string;
 }
 
 export interface ClassSchedule {

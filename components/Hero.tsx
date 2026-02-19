@@ -1,46 +1,67 @@
 import React from 'react';
+import { Language } from '../types';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ language, setLanguage }) => {
+  
+  const translations = {
+    pt: { title: "Ficha de Seleção de Fotos", subtitle: "Garanta as memórias do seu atleta" },
+    es: { title: "Ficha de Selección de Fotos", subtitle: "Guarda los recuerdos de tu atleta" },
+    en: { title: "Photo Selection Form", subtitle: "Secure your athlete's memories" }
+  };
+
+  const t = translations[language];
+
   return (
-    // Changed h-[380px] to min-h-[460px] to ensure text fits on mobile before the form overlaps
-    <div className="relative overflow-hidden min-h-[460px] md:h-[520px] flex items-start pt-28 md:pt-36 justify-center bg-bisa-navy">
-      {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full z-0 animate-fade-in">
-        {/* Solid dark overlay for better text contrast */}
-        <div className="absolute inset-0 bg-bisa-navy/85 z-10 mix-blend-multiply"></div>
-        {/* Subtle top-down shadow for header visibility, no bottom white fade */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/20 z-10"></div>
-        <video 
-          className="w-full h-full object-cover transform scale-105 filter blur-[1px]"
-          src="https://i.imgur.com/Qfza7yN.mp4" 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-        />
+    // Reduced padding (pt-28 pb-24) to make it smaller
+    <div className="relative bg-[#001f52] pt-28 pb-24 px-4 overflow-hidden shadow-xl">
+      
+      {/* --- Background Effects --- */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#00276D] to-[#001533]"></div>
+      
+      {/* Subtle Pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" 
+           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }}>
       </div>
 
-      <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-10 md:pb-0">
+      {/* --- Content --- */}
+      <div className="relative z-10 max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12">
         
-        <div className="inline-flex items-center justify-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-5 backdrop-blur-md shadow-sm animate-pop-in" style={{ animationDelay: '0.1s' }}>
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-          </span>
-          <span className="text-[10px] md:text-xs font-bold text-white tracking-widest uppercase">Registrations Open</span>
+        {/* Left Side: Title & Subtitle */}
+        <div className="text-center md:text-left flex-1">
+            <h1 className="text-2xl md:text-4xl font-black text-white font-display uppercase tracking-tight mb-2 drop-shadow-md animate-fade-in-up">
+              {t.title}
+            </h1>
+            <p className="text-bisa-gold font-medium uppercase tracking-widest text-xs animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+               {t.subtitle}
+            </p>
         </div>
-        
-        <h1 className="text-3xl md:text-5xl font-black font-display tracking-tight mb-3 text-white drop-shadow-2xl uppercase leading-tight animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-          Join the <span className="text-transparent bg-clip-text bg-gradient-to-r from-bisa-gold to-yellow-100 relative inline-block">#1 Soccer Academy
-            <svg className="absolute w-full h-2 -bottom-1 left-0 text-bisa-gold opacity-50" viewBox="0 0 100 10" preserveAspectRatio="none">
-               <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
-            </svg>
-          </span><br className="hidden md:block" /> in the Region
-        </h1>
-        
-        <p className="text-sm md:text-lg text-gray-100 font-medium leading-relaxed max-w-xl mx-auto drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-           Bilu International Soccer Academy invites you to experience professional training.
-        </p>
+
+        {/* Right Side: Language Switcher (Compact) */}
+        <div className="flex-shrink-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <div className="inline-flex bg-black/30 backdrop-blur-md p-1 rounded-lg border border-white/10">
+              {(['pt', 'es', 'en'] as Language[]).map((lang) => (
+                <button 
+                  key={lang}
+                  onClick={() => setLanguage(lang)}
+                  className={`
+                    px-4 py-1.5 rounded-md text-xs font-bold transition-all duration-300 uppercase
+                    ${language === lang 
+                      ? 'bg-white text-bisa-navy shadow-sm' 
+                      : 'text-white/60 hover:text-white hover:bg-white/5'
+                    }
+                  `}
+                >
+                  {lang}
+                </button>
+              ))}
+            </div>
+        </div>
+
       </div>
     </div>
   );
