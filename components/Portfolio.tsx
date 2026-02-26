@@ -7,7 +7,7 @@ const Portfolio: React.FC<{ scrollToForm: () => void }> = ({ scrollToForm }) => 
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-80%"]);
 
   const images = [
     { 
@@ -83,20 +83,6 @@ const Portfolio: React.FC<{ scrollToForm: () => void }> = ({ scrollToForm }) => 
                 </div>
             </div>
           ))}
-          
-          {/* Final CTA Card */}
-          <div className="relative h-[60vh] w-[85vw] md:w-[40vw] shrink-0 rounded-3xl overflow-hidden bg-bisa-navy flex flex-col items-center justify-center text-center p-8 border border-white/10">
-              <h3 className="text-4xl md:text-6xl font-black text-white font-display uppercase tracking-tighter mb-6">
-                  Ready?
-              </h3>
-              <button 
-                  onClick={scrollToForm}
-                  className="bg-bisa-gold text-bisa-navy px-10 py-5 rounded-full font-black text-lg uppercase tracking-widest hover:bg-white transition-all duration-300 shadow-[0_0_40px_-10px_rgba(251,191,36,0.6)] transform hover:scale-105"
-              >
-                  Book Now
-              </button>
-          </div>
-
         </motion.div>
       </div>
     </section>
