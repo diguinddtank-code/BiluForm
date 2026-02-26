@@ -46,10 +46,11 @@ const Hero: React.FC<HeroProps> = ({ language, setLanguage, scrollToForm }) => {
             className="w-full h-full"
           >
             <img 
-              src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+              src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
               alt="Soccer Background" 
               className="w-full h-full object-cover opacity-50" 
               referrerPolicy="no-referrer"
+              loading="eager"
             />
           </motion.div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80"></div> 

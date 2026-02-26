@@ -18,9 +18,9 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
       <Hero language={language} setLanguage={setLanguage} scrollToForm={scrollToForm} />
       
-      <ValueProp language={language} />
+      <ValueProp language={language} scrollToForm={scrollToForm} />
       
-      <Portfolio />
+      <Portfolio scrollToForm={scrollToForm} />
 
       <div ref={formRef} className="py-20 bg-gray-100 px-4">
         <BookingForm language={language} />
