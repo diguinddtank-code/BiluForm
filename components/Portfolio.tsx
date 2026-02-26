@@ -108,9 +108,9 @@ const Portfolio: React.FC<{ scrollToForm: () => void }> = ({ scrollToForm }) => 
                     />
                 </div>
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 transition-opacity duration-500"></div>
                 
-                <div className="absolute bottom-0 left-0 p-6 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-500 opacity-0 group-hover:opacity-100">
+                <div className="absolute bottom-0 left-0 p-6 w-full">
                     <p className="text-bisa-gold text-[10px] font-bold uppercase tracking-widest mb-1">
                         {img.subtitle}
                     </p>
