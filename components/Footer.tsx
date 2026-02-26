@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           <div className="col-span-1 md:col-span-1">
-            <h3 className="text-2xl font-display font-black text-white mb-4 uppercase tracking-tighter">Bilu Photography</h3>
+            <h3 className="text-2xl font-display font-black text-white mb-4 uppercase tracking-tighter">Studio FB USA</h3>
             <p className="text-gray-400 max-w-sm text-sm leading-relaxed">
               Capturing the passion, intensity, and joy of youth soccer. Professional memories that last a lifetime.
             </p>
@@ -22,7 +22,11 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center">
                 <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                bilusoccer@gmail.com
+                studiofbusa@gmail.com
+              </li>
+              <li className="flex items-center">
+                <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" /></svg>
+                <a href="https://www.instagram.com/studiofbusa_" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">@studiofbusa_</a>
               </li>
             </ul>
           </div>
@@ -38,7 +42,7 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="border-t border-white/10 mt-12 pt-8 text-center text-gray-600 text-xs uppercase tracking-widest">
-          &copy; {new Date().getFullYear()} Bilu Photography. All rights reserved.
+          &copy; {new Date().getFullYear()} Studio FB USA. All rights reserved.
         </div>
       </div>
     </footer>

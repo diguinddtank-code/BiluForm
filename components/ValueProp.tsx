@@ -56,8 +56,8 @@ const ValueProp: React.FC<ValuePropProps> = ({ language, scrollToForm }) => {
         
         <div className="text-center mb-12 md:mb-16">
           <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-4xl font-black font-display uppercase tracking-tight mb-3 md:mb-4"
@@ -65,8 +65,8 @@ const ValueProp: React.FC<ValuePropProps> = ({ language, scrollToForm }) => {
             {t.title}
           </motion.h2>
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ delay: 0.1, duration: 0.6 }}
             className="text-base md:text-lg text-gray-500 font-light max-w-2xl mx-auto"
@@ -80,8 +80,8 @@ const ValueProp: React.FC<ValuePropProps> = ({ language, scrollToForm }) => {
             <div key={idx} className={`flex flex-col md:flex-row gap-6 md:gap-16 items-center ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
               
               <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="flex-1 w-full max-w-lg"
@@ -98,8 +98,8 @@ const ValueProp: React.FC<ValuePropProps> = ({ language, scrollToForm }) => {
               </motion.div>
 
               <motion.div 
-                initial={{ opacity: 0, x: 0, y: 30 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="flex-1 text-center md:text-left"
