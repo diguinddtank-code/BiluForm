@@ -5,6 +5,7 @@ export interface PhotoOrderFormData {
   parentName: string;
   phone: string;
   email: string;
+  teamName: string;
 }
 
 export interface BookingFormData {

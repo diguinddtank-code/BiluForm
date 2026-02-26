@@ -1,36 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
+import React, { useState, useRef } from 'react';
 import Hero from './components/Hero';
-import MatcherForm from './components/MatcherForm';
+import BookingForm from './components/BookingForm';
 import Footer from './components/Footer';
+import ValueProp from './components/ValueProp';
+import Portfolio from './components/Portfolio';
 import { Language } from './types';
 
 const App: React.FC = () => {
   const [language, setLanguage] = useState<Language>('pt');
+  const formRef = useRef<HTMLDivElement>(null);
 
-  // Auto-detect language on mount
-  useEffect(() => {
-    const browserLang = navigator.language.split('-')[0];
-    if (browserLang === 'es') {
-      setLanguage('es');
-    } else if (browserLang === 'pt') {
-      setLanguage('pt');
-    } else {
-      setLanguage('en'); // Default fallback
-    }
-  }, []);
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col font-sans text-gray-900">
-      <Header />
+    <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
+      <Hero language={language} setLanguage={setLanguage} scrollToForm={scrollToForm} />
       
-      {/* Pass language state to Hero (for switcher) and Form (for content) */}
-      <Hero language={language} setLanguage={setLanguage} />
+      <ValueProp language={language} />
       
-      {/* Container to pull the form up into the Hero and center it. Adjusted margin for smaller hero. */}
-      <main className="flex-grow -mt-12 relative z-20 pb-20">
-        <MatcherForm language={language} />
-      </main>
+      <Portfolio />
+
+      <div ref={formRef} className="py-20 bg-gray-100 px-4">
+        <BookingForm language={language} />
+      </div>
 
       <Footer />
     </div>
