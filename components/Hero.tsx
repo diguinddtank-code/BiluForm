@@ -95,12 +95,12 @@ const Hero: React.FC<HeroProps> = ({ language, setLanguage, scrollToForm }) => {
              initial={{ opacity: 0, y: 30 }}
              animate={{ opacity: 1, y: 0 }}
              transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-             className="max-w-4xl w-full"
+             className="max-w-5xl w-full"
           >
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white font-display uppercase tracking-tighter leading-[0.9] mb-4 md:mb-8 drop-shadow-2xl">
+              <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white font-display uppercase tracking-tighter leading-[0.9] mb-6 md:mb-8 drop-shadow-2xl">
                 {t.title}
               </h1>
-              <p className="text-sm sm:text-base md:text-xl text-gray-200 font-light max-w-xl mx-auto mb-8 md:mb-12 leading-relaxed tracking-wide px-4">
+              <p className="text-base sm:text-lg md:text-2xl text-gray-200 font-light max-w-2xl mx-auto mb-10 md:mb-14 leading-relaxed tracking-wide px-4">
                 {t.subtitle}
               </p>
               
@@ -108,11 +108,11 @@ const Hero: React.FC<HeroProps> = ({ language, setLanguage, scrollToForm }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={scrollToForm}
-                className="group relative inline-flex items-center gap-3 bg-bisa-gold text-bisa-navy px-6 md:px-10 py-3 md:py-4 rounded-full font-black text-[10px] md:text-xs uppercase tracking-[0.2em] hover:bg-white transition-all duration-300 shadow-[0_0_50px_-10px_rgba(251,191,36,0.4)] overflow-hidden"
+                className="group relative inline-flex items-center gap-3 bg-bisa-gold text-bisa-navy px-8 md:px-12 py-4 md:py-5 rounded-full font-black text-xs md:text-sm uppercase tracking-[0.2em] hover:bg-white transition-all duration-300 shadow-[0_0_50px_-10px_rgba(251,191,36,0.4)] overflow-hidden"
               >
                 <span className="relative z-10">{t.cta}</span>
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                <svg className="w-3 h-3 md:w-4 md:h-4 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                <svg className="w-4 h-4 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </motion.button>
           </motion.div>
         </div>

@@ -77,16 +77,16 @@ const ValueProp: React.FC<ValuePropProps> = ({ language, scrollToForm }) => {
 
         <div className="space-y-12 md:space-y-16">
           {items.map((item, idx) => (
-            <div key={idx} className={`flex flex-col md:flex-row gap-6 md:gap-12 items-center ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+            <div key={idx} className={`flex flex-col md:flex-row gap-6 md:gap-16 items-center ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
               
               <motion.div 
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex-1 w-full max-w-md"
+                className="flex-1 w-full max-w-lg"
               >
-                <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-100 shadow-md">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100 shadow-xl">
                   <img 
                     src={item.image} 
                     alt={item.title} 
@@ -104,8 +104,8 @@ const ValueProp: React.FC<ValuePropProps> = ({ language, scrollToForm }) => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="flex-1 text-center md:text-left"
               >
-                <h3 className="text-xl md:text-2xl font-bold font-display uppercase tracking-tight mb-2 md:mb-3">{item.title}</h3>
-                <p className="text-gray-600 leading-relaxed text-sm md:text-base font-light">
+                <h3 className="text-2xl md:text-3xl font-bold font-display uppercase tracking-tight mb-3 md:mb-4">{item.title}</h3>
+                <p className="text-gray-600 leading-relaxed text-base md:text-lg font-light">
                   {item.desc}
                 </p>
               </motion.div>
