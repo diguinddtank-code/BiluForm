@@ -37,22 +37,17 @@ const Hero: React.FC<HeroProps> = ({ language, setLanguage, scrollToForm }) => {
       {/* Main Hero Content */}
       <div className="relative h-full flex flex-col">
         
-        {/* Background Image with Parallax-like scale */}
+        {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <motion.div 
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 10, ease: "linear" }}
-            className="w-full h-full"
-          >
+          <div className="w-full h-full">
             <img 
               src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
               alt="Soccer Background" 
-              className="w-full h-full object-cover opacity-50" 
+              className="w-full h-full object-cover opacity-60" 
               referrerPolicy="no-referrer"
               loading="eager"
             />
-          </motion.div>
+          </div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80"></div> 
         </div>
 
@@ -61,7 +56,7 @@ const Hero: React.FC<HeroProps> = ({ language, setLanguage, scrollToForm }) => {
             <motion.img 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              transition={{ duration: 0.8 }}
               src="https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png" 
               alt="Bilu Soccer" 
               className="h-8 md:h-12 w-auto object-contain"
@@ -71,7 +66,7 @@ const Hero: React.FC<HeroProps> = ({ language, setLanguage, scrollToForm }) => {
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              transition={{ duration: 0.8 }}
               className="flex items-center gap-1 bg-black/40 backdrop-blur-md border border-white/10 rounded-full p-1"
             >
               {(['pt', 'es', 'en'] as Language[]).map((lang) => (
@@ -79,7 +74,7 @@ const Hero: React.FC<HeroProps> = ({ language, setLanguage, scrollToForm }) => {
                   key={lang}
                   onClick={() => setLanguage(lang)}
                   className={`
-                      relative px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300
+                      relative px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300
                       ${language === lang ? 'text-black bg-white' : 'text-white/70 hover:text-white'}
                   `}
                   >
@@ -92,85 +87,70 @@ const Hero: React.FC<HeroProps> = ({ language, setLanguage, scrollToForm }) => {
         {/* Center Content */}
         <div className="flex-1 flex flex-col items-center justify-center px-4 relative z-20 text-center mt-[-5vh]">
           <motion.div
-             initial={{ opacity: 0 }}
-             animate={{ opacity: 1 }}
-             transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-             className="max-w-5xl w-full"
+             initial={{ opacity: 0, y: 20 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ duration: 1, ease: "easeOut" }}
+             className="max-w-5xl w-full flex flex-col items-center"
           >
-              <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white font-display uppercase tracking-tighter leading-[0.9] mb-6 md:mb-8 drop-shadow-2xl">
+              <span className="block text-bisa-gold text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-4">
+                Studio F/B USA
+              </span>
+
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-display text-white uppercase tracking-tighter leading-[0.9] mb-6 drop-shadow-2xl">
                 {t.title}
               </h1>
-              <p className="text-base sm:text-lg md:text-2xl text-gray-200 font-light max-w-2xl mx-auto mb-10 md:mb-14 leading-relaxed tracking-wide px-4">
+              
+              <p className="text-base sm:text-lg md:text-xl text-gray-200 font-medium max-w-2xl mx-auto mb-10 leading-relaxed tracking-wide px-4">
                 {t.subtitle}
               </p>
               
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <button
                 onClick={scrollToForm}
-                className="group relative inline-flex items-center gap-3 bg-bisa-gold text-bisa-navy px-8 md:px-12 py-4 md:py-5 rounded-full font-black text-xs md:text-sm uppercase tracking-[0.2em] hover:bg-white transition-all duration-300 shadow-[0_0_50px_-10px_rgba(251,191,36,0.4)] overflow-hidden"
+                className="group relative inline-flex items-center justify-center gap-3 bg-bisa-gold text-bisa-navy px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all shadow-lg hover:bg-white hover:text-black"
               >
-                <span className="relative z-10">{t.cta}</span>
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                <svg className="w-4 h-4 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-              </motion.button>
+                <span>{t.cta}</span>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </button>
           </motion.div>
         </div>
 
-        {/* Bottom Championship Badge - Responsive */}
+        {/* Bottom Championship Badge */}
         <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          className="relative z-20 w-full pb-6 md:pb-10 px-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+          className="relative z-20 w-full pb-8 px-4"
         >
-          <div className="max-w-4xl mx-auto bg-black/60 backdrop-blur-xl border border-white/20 rounded-2xl md:rounded-3xl p-4 md:p-8 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-10 hover:bg-black/70 transition-colors duration-500 shadow-2xl">
+          <div className="max-w-4xl mx-auto bg-black/60 backdrop-blur-xl border border-white/20 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
              
              {/* Left Side: Text */}
-             <div className="flex flex-col items-center md:items-start text-center md:text-left flex-1 w-full">
-                <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                    <span className="bg-bisa-gold text-bisa-navy text-[9px] md:text-xs font-black uppercase tracking-widest px-2 py-1 md:px-3 rounded-full shadow-[0_0_15px_rgba(251,191,36,0.4)]">
-                        Confirmed
-                    </span>
-                    <span className="text-white/60 text-[9px] md:text-xs font-bold uppercase tracking-widest">
-                        Tournament Participation
+             <div className="flex flex-col items-center md:items-start text-center md:text-left">
+                <div className="flex items-center gap-2 mb-2">
+                    <span className="bg-bisa-gold text-bisa-navy text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-full">
+                        Cobertura Oficial
                     </span>
                 </div>
-                
-                <h2 className="text-xl sm:text-2xl md:text-4xl font-black text-white font-display uppercase tracking-tighter leading-none mb-1 md:mb-2">
-                  Bilu Academy <span className="text-white/30">at</span><br className="hidden md:block" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 md:ml-0 ml-1">St. Patrick's Cup</span>
+                <h2 className="text-xl md:text-3xl font-black font-display text-white uppercase tracking-tight leading-none">
+                  Bilu Academy <span className="text-white/50 font-light mx-1">×</span> St. Patrick's Cup
                 </h2>
-                
-                <p className="text-white/50 text-[10px] md:text-sm font-medium uppercase tracking-widest">
+                <p className="text-white/60 text-xs font-medium uppercase tracking-widest mt-2">
                   South Carolina • March 2026
                 </p>
              </div>
 
-             {/* Divider */}
-             <div className="h-px w-full md:w-px md:h-24 bg-gradient-to-b from-transparent via-white/20 to-transparent my-2 md:my-0"></div>
-
              {/* Right Side: Logos */}
-             <div className="flex items-center gap-6 md:gap-10 shrink-0">
-                 <div className="flex flex-col items-center">
-                    <img 
-                      src="https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png" 
-                      alt="Bilu Soccer" 
-                      className="h-10 md:h-16 w-auto object-contain mb-1 md:mb-2"
-                    />
-                    <span className="text-[8px] md:text-[10px] text-white/40 font-bold uppercase tracking-wider">Academy</span>
-                 </div>
-                 
-                 <span className="text-white/20 text-xl md:text-3xl font-light">×</span>
-                 
-                 <div className="flex flex-col items-center">
-                    <img 
-                      src="https://soccer.sincsports.com/photos/tid/TRN173/user/2026_logo.png" 
-                      alt="Championship Logo" 
-                      className="h-12 md:h-20 w-auto object-contain drop-shadow-lg mb-1 md:mb-2"
-                    />
-                    <span className="text-[8px] md:text-[10px] text-white/40 font-bold uppercase tracking-wider">Tournament</span>
-                 </div>
+             <div className="flex items-center gap-6 shrink-0">
+                 <img 
+                    src="https://bilusoccer.com/wp-content/uploads/2025/03/h2-3.png" 
+                    alt="Bilu Soccer" 
+                    className="h-12 w-auto object-contain"
+                 />
+                 <div className="h-10 w-px bg-white/20"></div>
+                 <img 
+                    src="https://soccer.sincsports.com/photos/tid/TRN173/user/2026_logo.png" 
+                    alt="Championship Logo" 
+                    className="h-14 w-auto object-contain drop-shadow-lg"
+                 />
              </div>
           </div>
         </motion.div>

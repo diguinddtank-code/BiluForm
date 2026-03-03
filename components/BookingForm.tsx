@@ -139,79 +139,68 @@ const BookingForm: React.FC<BookingFormProps> = ({ language }) => {
     }
   };
 
-  // UX: Highlight styles for inputs
   const inputContainerClass = "relative group";
-  const inputClass = "w-full pl-4 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:bg-white focus:border-bisa-navy focus:ring-2 focus:ring-bisa-navy/10 transition-all outline-none font-medium";
-  const labelClass = "block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-2 ml-1";
+  const inputClass = "w-full pl-4 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:bg-white focus:border-bisa-navy focus:ring-1 focus:ring-bisa-navy transition-all outline-none font-medium";
+  const labelClass = "block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2";
 
   if (submitted) {
     return (
-        <div id="matcher-form-container" className="w-full max-w-lg mx-auto px-4 mb-20 animate-pop-in">
-            {/* Premium "Receipt" Card */}
-            <div className="bg-white rounded-3xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden border border-gray-100 relative">
+        <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            id="matcher-form-container" 
+            className="w-full max-w-lg mx-auto px-4 py-20"
+        >
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 relative">
                 
-                {/* Status Header */}
-                <div className="bg-bisa-navy p-8 text-center relative overflow-hidden">
-                    {/* Confetti effect (CSS) */}
-                    <div className="absolute inset-0 opacity-10" 
-                         style={{ backgroundImage: `radial-gradient(#fbbf24 2px, transparent 2px)`, backgroundSize: '20px 20px' }}>
-                    </div>
-                    
-                    <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 border border-white/20 shadow-lg animate-[bounce_1s_ease-in-out_1]">
-                        <svg className="w-8 h-8 text-bisa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                <div className="bg-gray-50 p-10 text-center relative overflow-hidden border-b border-gray-100">
+                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg className="w-10 h-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
-                    <h2 className="text-2xl font-black text-white font-display uppercase tracking-wide">{t.successTitle}</h2>
-                    <p className="text-white/60 text-xs uppercase tracking-widest mt-2">{t.receipt}</p>
+                    <h2 className="text-3xl font-black font-display text-bisa-navy uppercase tracking-tight leading-none mb-2">{t.successTitle}</h2>
+                    <p className="text-gray-500 text-xs uppercase tracking-widest font-bold">{t.receipt}</p>
                 </div>
 
-                {/* Receipt Cut Effect (Visual) */}
-                <div className="relative h-4 bg-bisa-navy">
-                     <div className="absolute top-0 left-0 w-full h-4 bg-white" style={{ clipPath: 'polygon(0 50%, 2.5% 0, 5% 50%, 7.5% 0, 10% 50%, 12.5% 0, 15% 50%, 17.5% 0, 20% 50%, 22.5% 0, 25% 50%, 27.5% 0, 30% 50%, 32.5% 0, 35% 50%, 37.5% 0, 40% 50%, 42.5% 0, 45% 50%, 47.5% 0, 50% 50%, 52.5% 0, 55% 50%, 57.5% 0, 60% 50%, 62.5% 0, 65% 50%, 67.5% 0, 70% 50%, 72.5% 0, 75% 50%, 77.5% 0, 80% 50%, 82.5% 0, 85% 50%, 87.5% 0, 90% 50%, 92.5% 0, 95% 50%, 97.5% 0, 100% 50%, 100% 100%, 0% 100%)' }}></div>
-                </div>
-
-                {/* Body */}
-                <div className="px-8 pb-10 pt-4 text-center">
+                <div className="px-8 pb-12 pt-8 text-center">
                     
                     <div className="mb-8">
-                        <p className="text-gray-500 text-sm mb-1">{t.successMsg}</p>
-                        <p className="text-2xl font-black text-bisa-navy font-display">{formData.playerName}</p>
-                        <div className="w-16 h-1 bg-gray-100 mx-auto mt-4 rounded-full"></div>
+                        <p className="text-gray-500 text-sm mb-1 font-medium">{t.successMsg}</p>
+                        <p className="text-2xl font-black font-display text-gray-900 uppercase tracking-tight">{formData.playerName}</p>
                     </div>
 
-                    <p className="text-gray-600 font-medium mb-6 text-sm">
+                    <p className="text-gray-600 font-medium mb-8 text-sm leading-relaxed">
                         {t.successMsg2}
                     </p>
                     
-                    {/* Highlighted Payment Box */}
-                    <div className="bg-gray-50 rounded-2xl p-6 border-2 border-dashed border-gray-200 relative mt-4">
-                        <span className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-white px-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest border border-gray-200 rounded-full whitespace-nowrap">
+                    <div className="bg-gray-50 rounded-xl p-8 border border-gray-200 relative mt-4">
+                        <span className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-white px-4 py-1 text-[10px] font-bold text-bisa-navy uppercase tracking-widest border border-gray-200 rounded-full whitespace-nowrap shadow-sm">
                             Zelle Details
                         </span>
                         
                         <div className="flex flex-col items-center">
-                            <p className="text-4xl font-black text-bisa-navy mb-2 tracking-tighter">$30.00</p>
-                            <div className="flex items-center justify-center space-x-3 bg-white px-6 py-3 rounded-xl border border-gray-200 shadow-sm w-auto max-w-full">
-                                <span className="font-mono font-bold text-lg text-gray-800 tracking-wide selection:bg-bisa-gold whitespace-nowrap">
+                            <p className="text-5xl font-black font-display text-bisa-navy mb-4 tracking-tight">$39<span className="text-2xl text-gray-400">.00</span></p>
+                            <div className="flex items-center justify-center space-x-4 bg-white px-6 py-4 rounded-lg border border-gray-200 w-full shadow-sm">
+                                <span className="font-mono text-xl text-gray-900 tracking-wider font-bold">
                                     (843) 727-5264
                                 </span>
                                 <button 
                                     onClick={() => navigator.clipboard.writeText('8437275264')}
-                                    className="text-gray-400 hover:text-bisa-navy transition-colors shrink-0 p-1 hover:bg-gray-50 rounded-md"
+                                    className="text-gray-400 hover:text-bisa-navy transition-colors shrink-0 p-2 hover:bg-gray-50 rounded-md"
                                     title="Copy"
                                 >
                                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                                 </button>
                             </div>
-                            <p className="text-xs text-gray-400 mt-3 font-medium uppercase tracking-wide">Studio FB USA</p>
+                            <p className="text-[10px] text-gray-500 mt-4 uppercase tracking-widest font-bold">Studio FB USA</p>
                         </div>
                     </div>
 
-                    {/* WhatsApp Button */}
                     <button 
                         onClick={handleWhatsAppClick}
-                        className="mt-6 w-full bg-[#25D366] text-white py-4 rounded-xl font-bold uppercase tracking-widest shadow-lg hover:bg-[#20bd5a] transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                        className="mt-8 w-full bg-[#25D366] text-white py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-[#20bd5a] transition-colors flex items-center justify-center gap-3 shadow-md"
                     >
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -219,67 +208,92 @@ const BookingForm: React.FC<BookingFormProps> = ({ language }) => {
                         {t.sendProof}
                     </button>
 
-                    <div className="mt-8 text-[10px] text-gray-400 italic">
+                    <div className="mt-6 text-[10px] text-gray-400 uppercase tracking-widest font-bold">
                         {t.deadline} • {t.doubts}
                     </div>
                 </div>
             </div>
-            
-            {/* Shadow Reflection */}
-            <div className="mx-auto w-[85%] bg-black/5 h-4 rounded-[100%] blur-md -mt-4 relative z-[-1]"></div>
-        </div>
+        </motion.div>
     );
   }
 
   return (
     <div id="matcher-form-container" className="w-full bg-white border-t border-gray-100">
       
-      {/* Split Section Layout */}
-      <div className="flex flex-col lg:flex-row w-full min-h-[600px]">
+      <div className="flex flex-col lg:flex-row w-full min-h-[800px]">
         
-        {/* Left Column: Inputs */}
         <div className="p-8 md:p-16 lg:p-24 flex-1 flex flex-col justify-center">
-          <div className="max-w-3xl mx-auto w-full space-y-8">
+          <div className="max-w-3xl mx-auto w-full space-y-12">
           
-          <div className="mb-8">
-              <h3 className="text-4xl font-black text-bisa-navy uppercase tracking-wide font-display border-b-4 border-bisa-gold/30 inline-block pb-2">
+          <div className="mb-12">
+              <motion.h3 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="text-4xl md:text-6xl font-black font-display text-bisa-navy uppercase tracking-tight leading-none mb-4"
+              >
                   {t.title}
-              </h3>
-              <p className="text-lg text-gray-500 mt-4 leading-relaxed max-w-2xl">{t.subtitle}</p>
+              </motion.h3>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+                className="text-lg text-gray-500 font-medium leading-relaxed max-w-2xl"
+              >
+                  {t.subtitle}
+              </motion.p>
               
-              {/* Package Details - Visible on Mobile */}
-              <div className="mt-6 p-5 bg-blue-50 rounded-xl border border-blue-100 lg:hidden">
-                  <p className="text-sm text-blue-800 font-medium">
-                      <span className="font-bold uppercase mr-1">Info:</span> 
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                className="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-100 lg:hidden"
+              >
+                  <p className="text-sm text-gray-600 font-medium leading-relaxed">
+                      <span className="text-bisa-navy font-bold uppercase tracking-widest text-[10px] block mb-2">Info</span> 
                       {t.packageDetails}
                   </p>
-              </div>
+              </motion.div>
           </div>
 
-          {/* Mobile Payment Info - Visible ONLY on Mobile */}
-          <div className="lg:hidden bg-gray-900 text-white p-6 rounded-2xl mb-8 relative overflow-hidden">
-             <div className="absolute top-0 right-0 w-20 h-20 bg-bisa-gold/20 rounded-bl-full -mr-10 -mt-10"></div>
-             <p className="text-xs text-white/60 uppercase tracking-widest mb-1">{t.valueLabel}</p>
-             <div className="flex items-baseline gap-1 mb-3">
-                 <span className="text-3xl font-black text-white">$30</span>
-                 <span className="text-lg font-medium text-white/50">.00</span>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="lg:hidden bg-gray-50 rounded-2xl border border-gray-200 p-8 mb-12 relative overflow-hidden"
+          >
+             <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-4">{t.valueLabel}</p>
+             <div className="flex items-baseline gap-1 mb-6">
+                 <span className="text-5xl font-black font-display text-bisa-navy tracking-tight">$39</span>
+                 <span className="text-xl text-gray-400 font-bold">.00</span>
              </div>
-             <div className="bg-white/10 rounded-lg p-3 backdrop-blur-sm border border-white/10">
-                 <p className="text-[10px] text-bisa-gold uppercase font-bold mb-1">{t.paymentInst}</p>
+             <div className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
+                 <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-2">{t.paymentInst}</p>
                  <div className="flex items-center justify-between">
-                     <span className="font-mono font-bold text-sm">843 727-5264</span>
-                     <button onClick={() => navigator.clipboard.writeText('8437275264')} className="text-white/60 hover:text-white">
-                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                     <span className="font-mono text-lg text-gray-900 font-bold">843 727-5264</span>
+                     <button type="button" onClick={() => navigator.clipboard.writeText('8437275264')} className="text-gray-400 hover:text-bisa-navy transition-colors">
+                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                      </button>
                  </div>
-                 <p className="text-[9px] text-white/40 mt-1">Studio FB USA</p>
+                 <p className="text-[10px] text-gray-400 mt-2 uppercase tracking-widest font-bold">Studio FB USA</p>
              </div>
-          </div>
+          </motion.div>
 
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <motion.form 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            onSubmit={handleSubmit} 
+            className="space-y-8"
+          >
             <input type="text" name="_honey" style={{display: 'none'}} />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className={inputContainerClass}>
                    <label className={labelClass}>{t.playerLabel}</label>
                    <input
@@ -300,11 +314,11 @@ const BookingForm: React.FC<BookingFormProps> = ({ language }) => {
                      required
                      value={formData.teamName}
                      onChange={handleChange}
-                     className={inputClass}
+                     className={`${inputClass} appearance-none`}
                    >
-                     <option value="" disabled>{t.teamPlace}</option>
+                     <option value="" disabled className="text-gray-400">{t.teamPlace}</option>
                      {teams.map(team => (
-                       <option key={team} value={team}>{team}</option>
+                       <option key={team} value={team} className="bg-white text-gray-900">{team}</option>
                      ))}
                    </select>
                 </div>
@@ -323,7 +337,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ language }) => {
                />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className={inputContainerClass}>
                    <label className={labelClass}>{t.phoneLabel}</label>
                    <input
@@ -351,61 +365,61 @@ const BookingForm: React.FC<BookingFormProps> = ({ language }) => {
                 </div>
             </div>
             
-            {/* Submit Button */}
-            <div className="mt-12 pt-6 border-t border-gray-100">
+            <div className="mt-12 pt-8 border-t border-gray-100">
                  <button
                     type="submit"
                     disabled={loading}
-                    className="w-full md:w-auto md:min-w-[350px] py-5 bg-bisa-navy text-white rounded-xl font-bold uppercase tracking-widest shadow-xl hover:bg-bisa-navy/90 transition-all transform hover:-translate-y-1 text-base"
+                    className="w-full md:w-auto md:min-w-[300px] bg-bisa-navy text-white px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all shadow-lg hover:shadow-xl hover:bg-bisa-navy/90 transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
                     {loading ? t.sending : t.submit}
                   </button>
-                  <p className="text-left text-xs text-gray-400 mt-4 ml-1">
+                  <p className="text-left text-[10px] text-gray-400 font-bold mt-4 uppercase tracking-widest">
                       {t.deadline}
                   </p>
             </div>
-          </form>
+          </motion.form>
           </div>
         </div>
 
-        {/* Right Column: Payment Info - Desktop Only */}
-        <div className="hidden lg:flex lg:w-[35%] bg-[#001f52] p-12 lg:p-20 flex-col justify-center relative overflow-hidden text-white shrink-0">
-            {/* Background Accents */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-bisa-gold/10 rounded-bl-full -mr-32 -mt-32"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-tr-full -ml-32 -mb-32"></div>
+        <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="hidden lg:flex lg:w-[40%] bg-gray-50 p-12 lg:p-24 flex-col justify-center relative overflow-hidden text-gray-900 shrink-0 border-l border-gray-200"
+        >
             
-            <div className="relative z-10 space-y-12">
+            <div className="relative z-10 space-y-16">
                 <div>
-                    <h3 className="text-white/60 font-medium text-sm uppercase tracking-widest mb-2">{t.valueLabel}</h3>
-                    <p className="text-7xl font-black text-white font-display tracking-tighter">$30<span className="text-4xl text-white/50 align-top">.00</span></p>
+                    <h3 className="text-gray-500 font-bold text-[10px] uppercase tracking-widest mb-4">{t.valueLabel}</h3>
+                    <p className="text-7xl font-black font-display text-bisa-navy tracking-tight leading-none">$39<span className="text-3xl text-gray-400 align-top">.00</span></p>
                 </div>
 
                 <div className="space-y-8">
-                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 shadow-2xl">
-                        <p className="text-bisa-gold text-xs font-bold uppercase tracking-widest mb-3">{t.paymentInst}</p>
-                        <div className="flex items-center justify-between mb-2">
-                           <p className="font-mono font-bold text-2xl tracking-wide">843 727-5264</p>
-                           <button type="button" onClick={() => navigator.clipboard.writeText('8437275264')} className="text-white/40 hover:text-white transition-colors p-2">
-                               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                    <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+                        <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-3">{t.paymentInst}</p>
+                        <div className="flex items-center justify-between mb-3">
+                           <p className="font-mono text-2xl font-bold tracking-wider text-gray-900">843 727-5264</p>
+                           <button type="button" onClick={() => navigator.clipboard.writeText('8437275264')} className="text-gray-400 hover:text-bisa-navy transition-colors p-2 bg-gray-50 rounded-lg">
+                               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                            </button>
                         </div>
-                        <p className="text-white/40 text-xs">Studio FB USA</p>
+                        <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest">Studio FB USA</p>
                     </div>
 
-                    <div className="flex items-start gap-4 text-white/70">
-                        <svg className="w-6 h-6 mt-0.5 shrink-0 text-bisa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <p className="text-base leading-relaxed font-medium">{t.packageDetails}</p>
+                    <div className="flex items-start gap-4 text-gray-600 bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                        <svg className="w-6 h-6 text-bisa-navy shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <p className="text-sm leading-relaxed font-medium">{t.packageDetails}</p>
                     </div>
                 </div>
             </div>
 
-            <div className="relative z-10 mt-16">
-                <div className="w-full h-px bg-white/10 mb-6"></div>
-                <p className="text-center text-sm text-white/40 italic">
+            <div className="relative z-10 mt-16 pt-8 border-t border-gray-200">
+                <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">
                     {t.doubts}
                 </p>
             </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
