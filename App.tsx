@@ -7,7 +7,7 @@ import Portfolio from './components/Portfolio';
 import { Language } from './types';
 
 const App: React.FC = () => {
-  const [language, setLanguage] = useState<Language>('pt');
+  const [language, setLanguage] = useState<Language>('en');
   const formRef = useRef<HTMLDivElement>(null);
 
   const scrollToForm = () => {

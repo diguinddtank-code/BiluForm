@@ -69,16 +69,19 @@ const Hero: React.FC<HeroProps> = ({ language, setLanguage, scrollToForm }) => {
               transition={{ duration: 0.8 }}
               className="flex items-center gap-1 bg-black/40 backdrop-blur-md border border-white/10 rounded-full p-1"
             >
-              {(['pt', 'es', 'en'] as Language[]).map((lang) => (
+              {(['en', 'pt', 'es'] as Language[]).map((lang) => (
                   <button 
                   key={lang}
                   onClick={() => setLanguage(lang)}
                   className={`
-                      relative px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300
+                      relative px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all duration-300 flex items-center gap-1.5
                       ${language === lang ? 'text-black bg-white' : 'text-white/70 hover:text-white'}
                   `}
                   >
-                  {lang}
+                  <span className="text-sm">
+                    {lang === 'en' ? '🇺🇸' : lang === 'pt' ? '🇧🇷' : '🇪🇸'}
+                  </span>
+                  <span className="hidden sm:inline">{lang}</span>
                   </button>
               ))}
             </motion.div>
