@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { PhotoOrderFormData, Language } from '../types';
 import { motion } from 'framer-motion';
 
@@ -17,6 +17,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ language }) => {
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const teams = [
     "BISA 17 Boys Gold", "BISA 16 Boys Gold", "BISA 15 Boys Gold", "BISA 2012/13 Boys"
@@ -139,20 +140,27 @@ const BookingForm: React.FC<BookingFormProps> = ({ language }) => {
     }
   };
 
+  useEffect(() => {
+    if (submitted && containerRef.current) {
+      containerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [submitted]);
+
   const inputContainerClass = "relative group";
   const inputClass = "w-full pl-4 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:bg-white focus:border-bisa-navy focus:ring-1 focus:ring-bisa-navy transition-all outline-none font-medium";
   const labelClass = "block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2";
 
   if (submitted) {
     return (
-        <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            id="matcher-form-container" 
-            className="w-full max-w-lg mx-auto px-4 py-20"
-        >
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 relative">
+        <div ref={containerRef} className="w-full">
+          <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              id="matcher-form-container" 
+              className="w-full max-w-lg mx-auto px-4 py-20"
+          >
+              <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 relative">
                 
                 <div className="bg-gray-50 p-6 sm:p-10 text-center relative overflow-hidden border-b border-gray-100">
                     <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
@@ -213,7 +221,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ language }) => {
                     </div>
                 </div>
             </div>
-        </motion.div>
+          </motion.div>
+        </div>
     );
   }
 
