@@ -38,17 +38,24 @@ const Hero: React.FC<HeroProps> = ({ language, setLanguage, scrollToForm }) => {
       <div className="relative h-full flex flex-col">
         
         {/* Background Image */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 bg-black">
           <div className="w-full h-full">
             <img 
-              src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-              alt="Soccer Background" 
-              className="w-full h-full object-cover opacity-60" 
+              src="https://i.imgur.com/tfyWqyy.png" 
+              alt="Soccer Background Mobile" 
+              className="w-full h-full object-cover object-center opacity-50 md:hidden" 
+              referrerPolicy="no-referrer"
+              loading="eager"
+            />
+            <img 
+              src="https://i.imgur.com/RABMfB2.png" 
+              alt="Soccer Background Desktop" 
+              className="w-full h-full object-cover object-top opacity-50 hidden md:block" 
               referrerPolicy="no-referrer"
               loading="eager"
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80"></div> 
+          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/40 to-black/90"></div> 
         </div>
 
         {/* Navbar */}

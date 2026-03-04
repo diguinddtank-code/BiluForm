@@ -4,6 +4,7 @@ import BookingForm from './components/BookingForm';
 import Footer from './components/Footer';
 import ValueProp from './components/ValueProp';
 import Portfolio from './components/Portfolio';
+import InstagramSection from './components/InstagramSection';
 import { Language } from './types';
 
 const App: React.FC = () => {
@@ -21,6 +22,8 @@ const App: React.FC = () => {
       <ValueProp language={language} scrollToForm={scrollToForm} />
       
       <Portfolio scrollToForm={scrollToForm} />
+
+      <InstagramSection />
 
       <div ref={formRef} className="py-20 bg-gray-100 px-4">
         <BookingForm language={language} />
