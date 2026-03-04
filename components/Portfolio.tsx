@@ -8,7 +8,7 @@ const Portfolio: React.FC<{ scrollToForm: () => void }> = ({ scrollToForm }) => 
   const items = [
     { 
       id: 1,
-      src: "https://i.imgur.com/GSzz8F1h.jpeg", 
+      src: "https://i.imgur.com/Ozpx18t.jpeg", 
       title: "The Perfect Strike",
       subtitle: "Precision & Power",
       type: "image"
@@ -36,14 +36,14 @@ const Portfolio: React.FC<{ scrollToForm: () => void }> = ({ scrollToForm }) => 
     },
     { 
       id: 5,
-      src: "https://i.imgur.com/hbCm9kvh.jpeg", 
+      src: "https://i.imgur.com/ROY3OgO.jpeg", 
       title: "Pure Focus",
       subtitle: "Eyes on the Goal",
       type: "image"
     },
     { 
       id: 6,
-      src: "https://i.imgur.com/BilHVIqh.jpeg", 
+      src: "https://i.imgur.com/76SvTeT.jpeg", 
       title: "Game Day",
       subtitle: "The Atmosphere",
       type: "image"

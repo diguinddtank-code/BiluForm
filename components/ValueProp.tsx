@@ -45,7 +45,7 @@ const ValueProp: React.FC<ValuePropProps> = ({ language, scrollToForm }) => {
   }[language];
 
   const items = [
-    { title: t.item1Title, desc: t.item1Desc, image: "https://images.unsplash.com/photo-1511886929837-354d827aae26?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    { title: t.item1Title, desc: t.item1Desc, image: "https://i.imgur.com/C2mK9uy.jpeg" },
     { title: t.item2Title, desc: t.item2Desc, image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
     { title: t.item3Title, desc: t.item3Desc, image: "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
   ];
