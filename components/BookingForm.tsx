@@ -189,7 +189,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ language }) => {
                         </span>
                         
                         <div className="flex flex-col items-center">
-                            <p className="text-4xl sm:text-5xl font-black font-display text-bisa-navy mb-4 tracking-tight">$39<span className="text-xl sm:text-2xl text-gray-400">.00</span></p>
+                            <p className="text-4xl sm:text-5xl font-black font-display text-bisa-navy mb-4 tracking-tight">$20<span className="text-xl sm:text-2xl text-gray-400">.00</span></p>
                             <div className="flex items-center justify-center space-x-2 sm:space-x-4 bg-white px-4 py-3 sm:px-6 sm:py-4 rounded-lg border border-gray-200 w-full shadow-sm">
                                 <span className="font-mono text-lg sm:text-xl text-gray-900 tracking-wider font-bold">
                                     (843) 727-5264
@@ -277,7 +277,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ language }) => {
           >
              <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-4">{t.valueLabel}</p>
              <div className="flex items-baseline gap-1 mb-6">
-                 <span className="text-5xl font-black font-display text-bisa-navy tracking-tight">$39</span>
+                 <span className="text-5xl font-black font-display text-bisa-navy tracking-tight">$20</span>
                  <span className="text-xl text-gray-400 font-bold">.00</span>
              </div>
              <div className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
@@ -403,7 +403,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ language }) => {
             <div className="relative z-10 space-y-16">
                 <div>
                     <h3 className="text-gray-500 font-bold text-[10px] uppercase tracking-widest mb-4">{t.valueLabel}</h3>
-                    <p className="text-7xl font-black font-display text-bisa-navy tracking-tight leading-none">$39<span className="text-3xl text-gray-400 align-top">.00</span></p>
+                    <p className="text-7xl font-black font-display text-bisa-navy tracking-tight leading-none">$20<span className="text-3xl text-gray-400 align-top">.00</span></p>
                 </div>
 
                 <div className="space-y-8">
